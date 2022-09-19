@@ -14,6 +14,7 @@ body {
 #title {
     background-image:url("background-title.png");
     width:50%;
+    font-size:80%;
     margin:0px auto;
     padding:5px;
     border:3px solid grey;
@@ -22,6 +23,7 @@ body {
 
 .imgArt {
   border:3px solid;
+  max-width: 20%;
   border-radius: 10px;
   padding: 0px;
   margin: 5px;
@@ -45,6 +47,7 @@ body {
 #footer {
     background-image:url("background-title.png");
     width:50%;
+    font-size:80%;
     margin:10px auto;
     padding:5px;
     border:3px solid grey;
@@ -87,14 +90,14 @@ details[open] > summary {
 
 </style>
 </head>
-<body onload="loadImages();getGeckos();">
+<body onload="addListeners();init_screen();">
     
 
     <div id="title">
         <h3>1. Set an intention</h3>
         <h3>2. Write it down : <input type="text" id="input_number"><h3>
         <h3>3. Choose number of cards</h3>
-        <input type="range" id="input_cards" name="n_cards" value=3 min=1 max=24 onclick="loadImages();getGeckos();"
+        <input type="range" id="input_cards" name="n_cards" value=3 min=1 max=24
                oninput="this.nextElementSibling.value = this.value">
         <output>3</output>
     </div>
@@ -159,7 +162,18 @@ function rotate() {
         elem.classList.add("rotated"+i); 
     }
 }
-    
+
+function addListeners(){
+     // add the event listeners for click and touchscreen
+    var el = document.getElementById('input_cards');
+    el.addEventListener('touchend', init_screen);
+    el.addEventListener('click', init_screen);
+}
+
+function init_screen(){
+    loadImages();
+    getGeckos();
+}
     
 function loadImages() {
     var imList = ['images/img_15.png',
@@ -200,6 +214,9 @@ function loadImages() {
     }
     window.getComputedStyle(elem).rotate;
     rotate();
+    
+
+    
     return ;
         
 }
