@@ -207,16 +207,14 @@ function loadImages() {
 function getGeckos() {    
     var geckoSize = 60; // gecko size in pixels
     var body = document.getElementsByTagName('body')[0];
-    var geckos = document.getElementsByClassName('gecko'); // get ant elements
+    var geckos = document.getElementsByClassName('gecko'); // get elements
 
     // random position each gecko and set size
     for (var gecko of geckos) {  
       gecko.style.height = geckoSize*1.42 + "px";
       gecko.style.width = geckoSize + "px";
       gecko.style.left = Math.floor(Math.random() * body.clientWidth)+"px";
-      console.log(gecko.style.left);
       gecko.style.top = Math.floor(Math.random() * body.clientHeight)+"px";
-        console.log(gecko.style.top);
       gecko.style.transform = "rotate(" + getRandomInt(360) +  "deg)";
     }
  
