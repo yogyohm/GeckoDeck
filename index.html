@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<title>GeckoDeck</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="background-icon.png" />
+<style>
+body {
+    font-family: Arial;
+    text-align:center;
+    background-image:url("gecko.png"),repeating-linear-gradient(11deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 0px, transparent 4px),linear-gradient(#7c7c7c,yellow,white);
+    }
+    
+#title {
+    background-image:url("background-title.png");
+    width:50%;
+    margin:0px auto;
+    padding:5px;
+    border:3px solid grey;
+    border-radius: 10px;
+}
+
+.imgArt {
+  border:3px solid;
+  border-radius: 10px;
+  padding: 0px;
+  margin: 5px;
+  transition: transform 1s;
+  
+}
+  
+.rotated0 {
+  transform: rotate(900deg);
+}
+.rotated2 {
+  transform: rotate(990deg);
+}
+.rotated1 {
+  transform: rotate(1080deg);
+}
+.rotated3 {
+  transform: rotate(1170deg);
+}
+
+#footer {
+    background-image:url("background-title.png");
+    width:50%;
+    margin:10px auto;
+    padding:5px;
+    border:3px solid grey;
+    border-radius: 10px;
+    color:rgb(50,50,50);
+}
+    
+#footer p, #footer li {
+    text-align:justify;
+    margin-left:5%;
+    margin-bottom:10px;
+    width:50%;
+    background-image:linear-gradient(to right,rgba(85,185,225,0.5),rgba(255,255,255,0.5)); 
+
+}
+
+#title h3, summary{
+    background-image:repeating-linear-gradient(36deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 0px, transparent 2px),linear-gradient(to right,rgba(0,0,0,0.5),rgba(255,255,255,0.5)); 
+}
+    
+/*   
+summary {
+    background-image:repeating-linear-gradient(36deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 0px, transparent 2px),linear-gradient(to right,rgba(85,185,225,0.5),rgba(255,255,255,0.5)); 
+}*/
+
+details > summary {
+    list-style-type: '▶️';
+}
+
+details[open] > summary {
+    list-style-type: '🔽';
+}
+
+    
+.gecko {
+  position:absolute;
+  background-image:url("gecko.png");
+  background-size: cover;
+}
+
+</style>
+</head>
+<body onload="loadImages();getGeckos();">
+    
+
+    <div id="title">
+        <h3>1. Set an intention</h3>
+        <h3>2. Write it down : <input type="text" id="input_number"><h3>
+        <h3>3. Choose number of cards</h3>
+        <input type="range" id="input_cards" name="n_cards" value=3 min=1 max=24 onclick="loadImages();getGeckos();"
+               oninput="this.nextElementSibling.value = this.value">
+        <output>3</output>
+    </div>
+    <div id="imageList">
+
+    </div>
+    <div id="footer">
+    All images copyrighted. <br/>
+    ᐁ Watch, Click, Share ᐁ <br/>
+    <!--iframe width="112" height="63" src="https://www.youtube.com/embed/1DdE8m79PHY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe-->  
+    
+    <details>
+        <summary>About this</summary>
+        <p>Nothing special, you're beautiful, you know?</p>
+    </details>
+    <details>
+        <summary>Most important notes</summary>
+            <p>Golden rule: Do not treat others in ways that you would not like to be treated.</p>
+            <p>Suffering is clinging to the aggregates. </p>
+            <p>The five aggregates or heaps of clinging are:</p>
+            <ul>
+                <li>Form (or material image, impression) (rupa)</li>
+                <li>Sensations (or feelings, received from form) (vedana)</li>
+                <li>Perceptions (samjna)</li>
+                <li>Mental activity or formations (sankhara)</li>
+                <li>Consciousness (vijnana).</li></ul>
+            
+    </details>
+    <details>
+        <summary>Nothing special happens on this page, why?</summary>
+            <p>Meditate, then try again. And if nothing happens today, maybe tomorrow.</p>            
+    </details>
+    <details>
+        <summary>I am a psychic / medium and I love this site</summary>
+            <p>Thank you so much, I love you too :) If you regularly use it and have suggestions, please contact me on the email address on Youtube. </p>
+    </details>
+    <details>
+        <summary>I am an artist and I love this site</summary>
+            <p>Thank you so much, I love you too :) If you regularly use it and have suggestions, please contact me on the email address on Youtube. </p>
+    </details>
+    <details>
+        <summary>I am a retired tax officer</summary>
+            <p>Thank you so much, I love you too :) If you regularly use it and have suggestions, please contact me on the email address on Youtube. </p>
+    </details>
+            
+    </div>
+            
+    <span class="gecko"></span>
+
+
+<script>
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+    
+function rotate() {
+    
+    elements = document.getElementsByClassName("imgArt");
+    for (var elem of elements) {
+        i = getRandomInt(2)
+        elem.classList.add("rotated"+i); 
+    }
+}
+    
+    
+function loadImages() {
+    var imList = ['images/img_15.png',
+ 'images/img_17.png',
+ 'images/img_0.png',
+ 'images/img_3.png',
+ 'images/img_7.png',
+ 'images/img_6.png',
+ 'images/img_10.png',
+ 'images/img_5.png',
+ 'images/img_20.png',
+ 'images/img_13.png',
+ 'images/img_19.png',
+ 'images/img_4.png',
+ 'images/img_18.png',
+ 'images/img_22.png',
+ 'images/img_23.png',
+ 'images/img_8.png',
+ 'images/img_2.png',
+ 'images/img_16.png',
+ 'images/img_21.png',
+ 'images/img_1.png',
+ 'images/img_11.png',
+ 'images/img_14.png',
+ 'images/img_9.png',
+ 'images/img_12.png']
+    var element = document.getElementById("input_cards")
+    var val = element.value ;
+    div_images = document.getElementById("imageList")
+    div_images.innerHTML = ""
+    for (i = 0; i < val; i++) {
+        var elem = document.createElement("img");
+        elem.setAttribute("src", imList[getRandomInt(imList.length)]);
+        elem.setAttribute("alt", "art");
+        elem.setAttribute("class", "imgArt")
+        div_images.appendChild(elem);
+        
+    }
+    window.getComputedStyle(elem).rotate;
+    rotate();
+    return ;
+        
+}
+
+function getGeckos() {    
+    var geckoSize = 60; // gecko size in pixels
+    var body = document.getElementsByTagName('body')[0];
+    var geckos = document.getElementsByClassName('gecko'); // get ant elements
+
+    // random position each gecko and set size
+    for (var gecko of geckos) {  
+      gecko.style.height = geckoSize*1.42 + "px";
+      gecko.style.width = geckoSize + "px";
+      gecko.style.left = Math.floor(Math.random() * body.clientWidth)+"px";
+      console.log(gecko.style.left);
+      gecko.style.top = Math.floor(Math.random() * body.clientHeight)+"px";
+        console.log(gecko.style.top);
+      gecko.style.transform = "rotate(" + getRandomInt(360) +  "deg)";
+    }
+ 
+};
+
+</script>
+   
+</body>
+</html> 
