@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/png" href="t1.png" />
+<title>Trois</title>
+<style>
+	html, body {
+	  text-align:center;
+	  left:50%;
+	  transform:translate(-50%, 0%);
+	  position:relative;
+	  background:linear-gradient(4deg, rgba(2,0,36,1) 0%, rgba(9,69,121,1) 35%, rgba(0,212,255,1) 100%);
+	  height:100%;
+	  padding:0px;
+	  margin:0;
+	  overflow: hidden;
+	}
+	
+	#trois {
+	  margin:0;
+	  padding:0px;
+	  text-align:center;
+	}
+	
+	#infos {
+		display:flex;
+		text-align:center;
+		justify-content: space-evenly;
+		background:linear-gradient(4deg, rgba(2,0,36,1) 0%, rgba(9,69,121,1) 35%, rgba(0,212,255,1) 100%);
+		width:100%;
+		height:7%;
+	}
+	
+	#score {
+	  flex-basis: 20%;  
+	  width:10%;
+	}
+	
+	#score p {
+	  margin:0px;
+	  margin-top:1px;
+	  line-height:1.5em;
+	  vertical-align: middle;
+	
+	  
+	}
+	
+	
+	#score img {
+		width:15%;
+		height:10%;
+		vertical-align:middle;
+		box-shadow: 3px 3px 5px white;
+		outline:1px inset #dddf4e;
+		border-radius: 0.2em;
+	}
+	
+	
+	
+	#commandes {
+		flex-basis: 40%;
+		display:inline;
+		
+	}
+	
+	#musique {
+	  flex-basis: 20%;
+	}
+	
+	canvas {
+	  background:linear-gradient(4deg, rgba(2,0,36,1) 0%, rgba(9,69,121,1) 35%, rgba(0,212,255,1) 100%);
+	  width:100%;
+	  height:89%;
+	  display:block;
+	  border:1px solid grey; 
+	  margin:0px;
+	}
+	
+	
+	.bouton {
+	  background: linear-gradient(56deg, rgba(211,214,191,1) 0%, rgb(196 197 131 / 36%) 52%, rgba(230,228,171,1) 100%);  
+	  border-inline:3px solid orange;
+	  font-family: "Arial";
+      font-weight: bold;
+      text-align:center;
+      color:#ebedea; 
+      cursor: default;
+	}
+	
+	.bouton:hover {
+    
+	    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    }
+	
+	#decoH {
+		width:100%;
+		height:7%;
+		top:8%;
+		left:0%;
+	}
+	
+	#decoH2 {
+		width:100%;
+		height:7%;
+		top:22%;
+		left:0%;
+	}
+	
+	#decoH3 {
+		width:100%;
+		height:7%;
+		top:77%;
+		left:0%;
+	}
+	
+    #leftJoy {
+		width:40%;
+		height:10%;
+		top:90%;
+		left:0%;
+		border-radius:50% 50% 50% 0%;
+    }
+    
+    #rightJoy {
+        width:40%;
+        height:10%;
+        top:90%;
+        left:60%;
+        border-radius:50% 50% 0% 50%;
+    }
+    
+    .control {
+    	position:absolute;
+		background: linear-gradient(56deg, rgba(211,214,191,1) 0%, rgb(196 197 131 / 36%) 52%, rgba(230,228,171,1) 100%);  
+        border-inline:3px solid orange;
+        line-height: 100%;
+        vertical-align: middle;
+        text-align:center;
+        cursor: default;
+    }
+    
+    
+    .triangle {
+	    margin:0;
+	    position:absolute;
+    	visibility:hidden;
+    }
+    
+    #parametres {
+    	font-weight:bold;
+    	padding:5%;
+    	border-inline:3px solid orange;
+    	background: linear-gradient(56deg, rgb(253 206 206) 0%, rgb(197 158 131 / 75%) 56%, rgb(230 196 171) 100%); 
+    	top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+    	position: absolute;
+    	visibility:hidden;
+    	width: 50%;
+    	height: 50%;
+    	font-family:sans-serif; 	
+		font-size: 1.5vh;
+    	
+    	
+    }
+    
+    #commencer {
+    	padding:2px;
+    	cursor:default;
+    	border: solid 1px #831212;
+		background: linear-gradient(56deg, rgb(206 240 253) 0%, rgb(131 139 197 / 75%) 56%, rgb(171 189 230) 100%); 
+		border-radius: 5px;
+    }
+    
+    #commencer:hover {
+    
+	    box-shadow: inset 0px 1px 0px #b2f17f, inset 0px -1px 0px #3d6f0d;
+    }
+	
+
+</style>
+</head>
+<body onload="init();">
+<!-- div id="trois" -->
+<img id="triangle" class="triangle" width="40" height="40"
+src="t1-1.png" alt="t">
+<img id="triangle2" class="triangle" width="40" height="40"
+src="t2-1.png" alt="t">
+<div id="infos">
+	<div id="score" class="bouton">
+		<p>7777</p><p>nv10</p>
+	</div>
+	<div id="commandes">
+		<div id="pause" class="bouton">Pause</div>
+		<div id="nouveau" class="bouton">Nouveau</div>	
+	</div>
+	<!--div id="musique" class="bouton"><iframe width="112" height="63" src="https://www.youtube.com/embed/GdCPs9-WjeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div -->
+</div>
+
+
+
+<canvas id="canvabien" width="600" height="1050">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+
+
+
+<script>
+/*
+Hi code reader, 
+whoever you are, 
+please have in mind that
+this game has been almost
+entirely coded from scratch
+of course I inspired myself 
+from other people (and games lol)
+
+If you copy bits of this code
+pls put a link to my youtube channel 
+that's all I'm asking! 
+
+And now ... 
+The time for square games is over
+we are entering a new era
+where screens will have a honeycomb shape
+and pigs will fly! 
+
+Honeycombs make an interesting structure though
+I hope it will inspire you! 
+
+*/
+
+let x_max = 20;
+let y_max = 20;
+const max_score_niv = 500;
+
+let canvas, ctx, pos, prevpos, tabzeros, move_on
+let niveau, score, millisec_prec
+let formes, formes2, rotationnel
+let audio0, audio1, audio2, audio3, audio10, audio11, audio12, audio12b, audio13, audio13b ; 
+let compteur ;
+let razpos, player, pause;
+
+let periode ;
+let fps, millisec_fps;
+const periode_init = 500;
+move_on = 1;
+
+class TControls {
+
+    constructor( post, domElement, type=true ) {
+        this.domElement = domElement;
+        this.type = type; //true gauche
+        this.activate = false;
+        this.mouseXY = Array(0,0);
+        this.scaleXY = Array(1,1); 
+        this.deltaXY = Array(0,0);
+        this.prevtime = 0;
+        this.rect = this.domElement.getBoundingClientRect();
+        this.datamove = [[40, 101, 118, 101, 110, 116, 41, 32, 61, 62, 32, 123, 101, 118, 101, 110, 116, 46, 112, 114],
+		[101, 118, 101, 110, 116, 68, 101, 102, 97, 117, 108, 116, 40, 41, 59, 105, 102, 32, 40, 116],
+		[104, 105, 115, 46, 97, 99, 116, 105, 118, 97, 116, 101, 32, 61, 61, 32, 116, 114, 117, 101],
+		[32, 38, 38, 32, 116, 121, 112, 101, 32, 61, 61, 32, 102, 97, 108, 115, 101, 41, 32, 123],
+		[109, 111, 118, 101, 95, 111, 110, 32, 61, 32, 48, 59, 105, 102, 32, 40, 101, 118, 101, 110],
+		[116, 46, 116, 121, 112, 101, 32, 61, 61, 32, 34, 116, 111, 117, 99, 104, 109, 111, 118, 101],
+		[34, 41, 32, 123, 32, 118, 97, 114, 32, 112, 120, 32, 61, 32, 101, 118, 101, 110, 116, 46],
+		[99, 104, 97, 110, 103, 101, 100, 84, 111, 117, 99, 104, 101, 115, 91, 48, 93, 46, 112, 97],
+		[103, 101, 88, 59, 32, 118, 97, 114, 32, 112, 121, 32, 61, 32, 101, 118, 101, 110, 116, 46],
+		[99, 104, 97, 110, 103, 101, 100, 84, 111, 117, 99, 104, 101, 115, 91, 48, 93, 46, 112, 97],
+		[103, 101, 89, 59, 125, 32, 101, 108, 115, 101, 32, 123, 32, 118, 97, 114, 32, 112, 120, 32],
+		[61, 32, 101, 118, 101, 110, 116, 46, 112, 97, 103, 101, 88, 59, 32, 118, 97, 114, 32, 112],
+		[121, 32, 61, 32, 101, 118, 101, 110, 116, 46, 112, 97, 103, 101, 89, 59, 125, 59, 105, 102],
+		[32, 40, 112, 120, 32, 62, 32, 116, 104, 105, 115, 46, 114, 101, 99, 116, 46, 114, 105, 103],
+		[104, 116, 32, 124, 124, 32, 112, 120, 32, 60, 32, 116, 104, 105, 115, 46, 114, 101, 99, 116],
+		[46, 108, 101, 102, 116, 32, 124, 124, 32, 112, 121, 32, 60, 32, 116, 104, 105, 115, 46, 114],
+		[101, 99, 116, 46, 116, 111, 112, 41, 32, 114, 101, 116, 117, 114, 110, 59, 116, 104, 105, 115],
+		[46, 100, 101, 108, 116, 97, 88, 89, 32, 61, 32, 91, 40, 112, 120, 32, 45, 32, 116, 104],
+		[105, 115, 46, 109, 111, 117, 115, 101, 88, 89, 91, 48, 93, 41, 47, 116, 104, 105, 115, 46],
+		[100, 111, 109, 69, 108, 101, 109, 101, 110, 116, 46, 99, 108, 105, 101, 110, 116, 87, 105, 100],
+		[116, 104, 42, 116, 104, 105, 115, 46, 115, 99, 97, 108, 101, 88, 89, 91, 48, 93, 44, 40],
+		[112, 121, 32, 45, 32, 116, 104, 105, 115, 46, 109, 111, 117, 115, 101, 88, 89, 91, 49, 93],
+		[41, 42, 116, 104, 105, 115, 46, 115, 99, 97, 108, 101, 88, 89, 91, 49, 93, 47, 116, 104],
+		[105, 115, 46, 100, 111, 109, 69, 108, 101, 109, 101, 110, 116, 46, 99, 108, 105, 101, 110, 116],
+		[72, 101, 105, 103, 104, 116, 93, 59, 116, 104, 105, 115, 46, 109, 111, 117, 115, 101, 88, 89],
+		[91, 48, 93, 32, 61, 32, 112, 120, 59, 116, 104, 105, 115, 46, 109, 111, 117, 115, 101, 88],
+		[89, 91, 49, 93, 32, 61, 32, 112, 121, 59, 105, 102, 32, 40, 116, 104, 105, 115, 46, 100],
+		[101, 108, 116, 97, 88, 89, 91, 48, 93, 32, 62, 32, 48, 46, 48, 53, 41, 32, 116, 104],
+		[105, 115, 46, 109, 111, 118, 101, 40, 48, 41, 59, 105, 102, 32, 40, 116, 104, 105, 115, 46],
+		[100, 101, 108, 116, 97, 88, 89, 91, 48, 93, 32, 60, 32, 45, 48, 46, 48, 53, 41, 32],
+		[116, 104, 105, 115, 46, 109, 111, 118, 101, 40, 49, 41, 59, 105, 102, 32, 40, 116, 104, 105],
+		[115, 46, 100, 101, 108, 116, 97, 88, 89, 91, 49, 93, 32, 62, 32, 48, 46, 48, 53, 41],
+		[32, 116, 104, 105, 115, 46, 109, 111, 118, 101, 40, 50, 41, 59, 125, 125, 32]];
+        //this.pos = pos ; 
+        	this.datamove2 = [].concat(...this.datamove);
+        	this.datadown = [[40, 101, 118, 101, 110, 116, 41, 32, 61, 62, 32, 123, 101, 118, 101, 110, 116, 46, 112, 114],
+		[101, 118, 101, 110, 116, 68, 101, 102, 97, 117, 108, 116, 40, 41, 59, 105, 102, 32, 40, 109],
+		[111, 118, 101, 95, 111, 110, 32, 61, 61, 32, 48, 41, 32, 114, 101, 116, 117, 114, 110, 59],
+		[116, 104, 105, 115, 46, 97, 99, 116, 105, 118, 97, 116, 101, 32, 61, 32, 116, 114, 117, 101],
+		[59, 109, 111, 118, 101, 95, 111, 110, 32, 61, 32, 48, 59, 116, 104, 105, 115, 46, 112, 114],
+		[101, 118, 116, 105, 109, 101, 32, 61, 32, 68, 97, 116, 101, 46, 110, 111, 119, 40, 41, 59],
+		[105, 102, 32, 40, 101, 118, 101, 110, 116, 46, 116, 121, 112, 101, 32, 61, 61, 32, 34, 116],
+		[111, 117, 99, 104, 115, 116, 97, 114, 116, 34, 41, 32, 123, 116, 104, 105, 115, 46, 109, 111],
+		[117, 115, 101, 88, 89, 91, 48, 93, 32, 61, 32, 101, 118, 101, 110, 116, 46, 99, 104, 97],
+		[110, 103, 101, 100, 84, 111, 117, 99, 104, 101, 115, 91, 48, 93, 46, 112, 97, 103, 101, 88],
+		[59, 116, 104, 105, 115, 46, 109, 111, 117, 115, 101, 88, 89, 91, 49, 93, 32, 61, 32, 101],
+		[118, 101, 110, 116, 46, 99, 104, 97, 110, 103, 101, 100, 84, 111, 117, 99, 104, 101, 115, 91],
+		[48, 93, 46, 112, 97, 103, 101, 89, 59, 125, 32, 101, 108, 115, 101, 32, 123, 116, 104, 105],
+		[115, 46, 109, 111, 117, 115, 101, 88, 89, 91, 48, 93, 32, 61, 32, 101, 118, 101, 110, 116],
+		[46, 112, 97, 103, 101, 88, 59, 116, 104, 105, 115, 46, 109, 111, 117, 115, 101, 88, 89, 91],
+		[49, 93, 32, 61, 32, 101, 118, 101, 110, 116, 46, 112, 97, 103, 101, 89, 59, 125, 105, 102],
+		[32, 40, 116, 121, 112, 101, 32, 61, 61, 32, 116, 114, 117, 101, 41, 32, 123, 32, 116, 104],
+		[105, 115, 46, 114, 111, 116, 97, 116, 105, 111, 110, 110, 101, 40, 41, 59, 97, 117, 100, 105],
+		[111, 49, 48, 46, 112, 108, 97, 121, 40, 41, 59, 125, 32, 101, 108, 115, 101, 32, 123, 97],
+		[117, 100, 105, 111, 49, 49, 46, 112, 108, 97, 121, 40, 41, 59, 125, 125]];
+        	this.datadown2 = [].concat(...this.datadown);
+        
+        
+        this.onMouseDown = eval(String.fromCharCode(...this.datadown2));
+        
+        
+        
+       
+       
+        this.onMouseUp = (event) => {
+            this.activate = false;
+            move_on = 1; 
+        }
+        
+        
+        this.onMouseMove = eval(String.fromCharCode(...this.datamove2));
+       
+        
+        
+        this.move = (dir) => {
+        	let nowtime = Date.now();
+        	if (nowtime - this.prevtime < 10 ) return ;
+        	this.prevtime = nowtime;
+        	let indforme = new Array(); 
+	    	for (let i = 0 ; i<pos.length ; i++) {	
+	    		if (pos[i][3]>0 ) { //bouge
+	    			indforme.push(i);
+	    		}
+	    	}
+
+	    	if (verifcollision(dir,indforme) === false) return;
+	    	
+	    	for (let i = 0; i<indforme.length ; i++) {
+				if (dir == 0) { pos[indforme[i]][0]+=1 ; pos[indforme[i]][3]=1 ;}
+				if (dir == 1) { pos[indforme[i]][0]-=1 ; pos[indforme[i]][3]=2 ;}
+				if (dir == 2) pos[indforme[i]][1]+=1 ;
+		    			
+		    }
+		    
+		    
+	    	
+		    dessinepos();
+		    	
+        	
+        	//let image = imagedepos(pos);
+        	
+        }; 
+        
+        this.rotationne = () => {
+
+        	
+        	let indforme = new Array(); 
+        	
+        	let xminf = x_max;
+        	let xmaxf = 0;
+        	let yminf = y_max;
+        	let ymaxf = 0;
+	    	for (let i = 0 ; i<pos.length ; i++) {	
+	    		if (pos[i][3]>0 ) { //bouge
+	    			indforme.push(i);/*
+	    			if(pos[i][0]<xminf) (xminf = pos[i][0]);
+	    			if(pos[i][0]>xmaxf) (xmaxf = pos[i][0]);
+	    			if(pos[i][1]<yminf) (yminf = pos[i][1]);
+	    			if(pos[i][1]>ymaxf) (ymaxf = pos[i][1]);*/
+	    		}
+	    	}
+	    	let type = pos[indforme[0]][2] ; // 1 seule pièce bouge normalement
+	    	
+	    	let rot = new Array();
+	    	
+    		for (let i = 0 ; i < formes2.length ; i++) {
+    			if (Math.floor(formes2[i][0][2]/10) == Math.floor(type/10)) { // pièce trouvée
+    				
+    				rot = rotationnel[i];
+    				break;
+    			}
+    		}
+    		
+    		let fact = 1;
+    		if (type%10 == 1) fact = -1;
+    		
+    		for (let i = 0; i<indforme.length ; i++) {
+	    		if (rot[i][0]*fact == 1) { if (verifcollision(0,[indforme[i]]) == false) return };
+	    		if (rot[i][0]*fact == -1) { if (verifcollision(1,[indforme[i]]) == false) return };
+	    		if (rot[i][1]*fact == 1 ) { if (verifcollision(2,[indforme[i]]) == false) return };
+	    		
+	    	}
+	    	
+	    	for (let i = 0; i<indforme.length ; i++) {
+	    		
+	    		pos[indforme[i]][0]+=rot[i][0]*fact;
+	    		pos[indforme[i]][1]+=rot[i][1]*fact;
+	    		pos[indforme[i]][2]+=1*fact;
+	    		
+	    	}
+	    	
+	    	
+	    	
+		
+	    	
+
+        	
+        };
+        
+        this.update = () => {
+            //sdfghj
+        }
+        
+        if (this.type == false) {
+		    this.domElement.addEventListener( 'mousedown', this.onMouseDown );
+		    this.domElement.addEventListener( 'touchstart', this.onMouseDown );
+		    this.domElement.addEventListener( 'mouseup', this.onMouseUp );
+		    this.domElement.addEventListener( 'touchend', this.onMouseUp );
+		    this.domElement.addEventListener( 'mousemove', this.onMouseMove );
+		    this.domElement.addEventListener( 'touchmove', this.onMouseMove );
+		} else {
+			this.domElement.addEventListener( 'mousedown', this.onMouseDown );
+		    this.domElement.addEventListener( 'touchstart', this.onMouseDown );
+		    this.domElement.addEventListener( 'mouseup', this.onMouseUp );
+		    this.domElement.addEventListener( 'touchend', this.onMouseUp );
+		    
+		}
+    
+    } 
+    
+}
+
+
+class Sonneries extends Audio {
+  static listAudios = [];
+  constructor(name) {
+    super(name);
+    Sonneries.listAudios.push(this);
+  }
+  
+  destroy() {
+      let i = Sonneries.listAudios.indexOf(this);
+      Sonneries.listAudios.splice(i, 1);
+  }
+}
+
+
+
+function init() {
+	canvas = document.getElementById("canvabien");
+	ctx = canvas.getContext("2d");
+	
+	const observer = new ResizeObserver((entries) => {
+  		if (window.innerWidth*2 > window.innerHeight) {
+  			document.body.style.height = "100%";
+			document.body.style.width = Math.round(window.innerHeight/2)+"px";
+		} else {
+			document.body.style.width = "100%";
+			document.body.style.height = window.innerWidth*2+"px";
+			
+		}
+	});
+	observer.observe(canvas);
+
+	
+	// init positions
+	pos = new Array(x_max*y_max);
+	tabzeros = new Array(x_max);
+    let e = 0; 
+    for (let i = 0; i < x_max ; i++) {
+    	tabzeros[i] = new Array(y_max);
+    	for (let j = 0 ; j < y_max ; j++) {
+			tabzeros[i][j] = 0;
+    		pos[e] = new Array(i,j,1);
+    		e++;
+    	}
+    }
+    prevpos=pos;
+    
+    formes = new Array( [[0,0,10,1],[1,1,10,1],[-1,1,10,1]],[[0,0,20,1],[1,1,20,1]],[[0,0,30,1],[1,0,30,1]],[[-1,0,40,1],[1,0,40,1],[3,0,40,1]],[[-1,0,50,1],[1,0,50,1],[3,0,50,1],[0,1,50,1],[2,1,50,1],[1,2,50,1]]);
+	formes2 = new Array([[-1,0,11,1],[1,0,11,1],[0,1,11,1]],[[1,0,21,1],[0,1,21,1]],[[0,0,31,1],[0,1,31,1]],[[0,-1,41,1],[0,0,41,1],[0,1,41,1]],[[-2,0,51,1],[0,0,51,1],[2,0,51,1],[-1,1,51,1],[1,1,51,1],[0,2,51,1]]);
+	rotationnel = new Array(3);
+	for (let i = 0 ; i<formes.length ; i++) {
+		rotationnel[i] = new Array(formes[i].length);
+		for( let k=0 ; k<formes[i].length ; k++) {
+			rotationnel[i][k] = new Array(2);
+			for (let j=0 ; j<2 ; j++) {
+				rotationnel[i][k][j] = formes2[i][k][j] - formes[i][k][j];
+			}
+		}
+	}
+	
+    
+    score = 0;
+    niveau = 1;
+    compteur = 0;
+    majscore(); 
+
+	dessinepos();
+	document.getElementById("nouveau").addEventListener('mouseup', ouvreparam );
+	document.getElementById("commencer").addEventListener('mouseup', nouveau );
+	document.getElementById("pause").addEventListener('mouseup', pause );
+	
+	
+	let datayoyo = [[108, 101, 116, 32, 110, 101, 119, 68, 105, 118, 32, 61, 32, 100, 111, 99, 117, 109, 101, 110],
+	[116, 46, 99, 114, 101, 97, 116, 101, 69, 108, 101, 109, 101, 110, 116, 40, 34, 100, 105, 118],
+	[34, 41, 59, 110, 101, 119, 68, 105, 118, 46, 115, 101, 116, 65, 116, 116, 114, 105, 98, 117],
+	[116, 101, 40, 34, 105, 100, 34, 44, 32, 34, 109, 117, 115, 105, 113, 117, 101, 34, 41, 59],
+	[110, 101, 119, 68, 105, 118, 46, 115, 101, 116, 65, 116, 116, 114, 105, 98, 117, 116, 101, 40],
+	[34, 99, 108, 97, 115, 115, 34, 44, 32, 34, 98, 111, 117, 116, 111, 110, 34, 41, 59, 100],
+	[111, 99, 117, 109, 101, 110, 116, 46, 103, 101, 116, 69, 108, 101, 109, 101, 110, 116, 66, 121],
+	[73, 100, 40, 34, 105, 110, 102, 111, 115, 34, 41, 46, 97, 112, 112, 101, 110, 100, 67, 104],
+	[105, 108, 100, 40, 110, 101, 119, 68, 105, 118, 41, 59, 118, 97, 114, 32, 116, 97, 103, 32],
+	[61, 32, 100, 111, 99, 117, 109, 101, 110, 116, 46, 99, 114, 101, 97, 116, 101, 69, 108, 101],
+	[109, 101, 110, 116, 40, 39, 115, 99, 114, 105, 112, 116, 39, 41, 59, 116, 97, 103, 46, 115],
+	[114, 99, 32, 61, 32, 34, 104, 116, 116, 112, 115, 58, 47, 47, 119, 119, 119, 46, 121, 111],
+	[117, 116, 117, 98, 101, 46, 99, 111, 109, 47, 105, 102, 114, 97, 109, 101, 95, 97, 112, 105],
+	[34, 59, 118, 97, 114, 32, 102, 105, 114, 115, 116, 83, 99, 114, 105, 112, 116, 84, 97, 103],
+	[32, 61, 32, 100, 111, 99, 117, 109, 101, 110, 116, 46, 103, 101, 116, 69, 108, 101, 109, 101],
+	[110, 116, 115, 66, 121, 84, 97, 103, 78, 97, 109, 101, 40, 39, 115, 99, 114, 105, 112, 116],
+	[39, 41, 91, 48, 93, 59, 102, 105, 114, 115, 116, 83, 99, 114, 105, 112, 116, 84, 97, 103],
+	[46, 112, 97, 114, 101, 110, 116, 78, 111, 100, 101, 46, 105, 110, 115, 101, 114, 116, 66, 101],
+	[102, 111, 114, 101, 40, 116, 97, 103, 44, 32, 102, 105, 114, 115, 116, 83, 99, 114, 105, 112],
+	[116, 84, 97, 103, 41, 59]];
+	abc(datayoyo);
+	
+	
+      
+
+	
+	
+	
+	let leftJoyEl = document.getElementById("leftJoy");
+    control = new TControls( pos, leftJoyEl );
+    let rightJoyEl = document.getElementById("rightJoy");
+    control2 = new TControls( pos, rightJoyEl, false );
+    
+    millisec_prec = Date.now();
+    periode = 10**8;
+
+    audio0 = new Audio('son0.ogg');    
+    audio1 = new Sonneries('son1.ogg');
+    audio2 = new Sonneries('son2.ogg');
+    audio3 = new Sonneries('son3.ogg');
+	audio10 = new Sonneries('son10.ogg');
+	audio11 = new Sonneries('son11.ogg');
+	audio12 = new Sonneries('son12.ogg');
+	audio12b = new Sonneries('son12.ogg');
+    audio13 = new Sonneries('son13.ogg');
+    audio13b = new Sonneries('son13.ogg');
+    audio20 = new Sonneries('son20.ogg');
+    
+    
+}
+
+
+
+// forme spec
+// [x, y, 1 = type, 1 = bouge]
+
+function ouvreparam() {
+	document.getElementById('parametres').style.visibility = "visible";	
+}
+
+
+
+let dataposition = [[102, 117, 110, 99, 116, 105, 111, 110, 32, 111, 110, 89, 111, 117, 84, 117, 98, 101, 73, 102],
+[114, 97, 109, 101, 65, 80, 73, 82, 101, 97, 100, 121, 40, 41, 32, 123, 112, 108, 97, 121],
+[101, 114, 32, 61, 32, 110, 101, 119, 32, 89, 84, 46, 80, 108, 97, 121, 101, 114, 40, 39],
+[109, 117, 115, 105, 113, 117, 101, 39, 44, 32, 123, 104, 101, 105, 103, 104, 116, 58, 32, 39],
+[54, 51, 39, 44, 119, 105, 100, 116, 104, 58, 32, 39, 49, 49, 50, 39, 44, 118, 105, 100],
+[101, 111, 73, 100, 58, 32, 39, 71, 100, 67, 80, 115, 57, 45, 87, 106, 101, 73, 39, 44],
+[112, 108, 97, 121, 101, 114, 86, 97, 114, 115, 58, 32, 123, 39, 112, 108, 97, 121, 115, 105],
+[110, 108, 105, 110, 101, 39, 58, 32, 49, 125, 44, 101, 118, 101, 110, 116, 115, 58, 32, 123],
+[39, 111, 110, 82, 101, 97, 100, 121, 39, 58, 32, 111, 110, 80, 108, 97, 121, 101, 114, 82],
+[101, 97, 100, 121, 44, 39, 111, 110, 83, 116, 97, 116, 101, 67, 104, 97, 110, 103, 101, 39],
+[58, 32, 111, 110, 80, 108, 97, 121, 101, 114, 83, 116, 97, 116, 101, 67, 104, 97, 110, 103],
+[101, 125, 125, 41, 59, 125, 102, 117, 110, 99, 116, 105, 111, 110, 32, 111, 110, 80, 108, 97],
+[121, 101, 114, 82, 101, 97, 100, 121, 40, 101, 118, 101, 110, 116, 41, 32, 123, 101, 118, 101],
+[110, 116, 46, 116, 97, 114, 103, 101, 116, 46, 112, 108, 97, 121, 86, 105, 100, 101, 111, 40],
+[41, 59, 125, 102, 117, 110, 99, 116, 105, 111, 110, 32, 111, 110, 80, 108, 97, 121, 101, 114],
+[83, 116, 97, 116, 101, 67, 104, 97, 110, 103, 101, 40, 101, 118, 101, 110, 116, 41, 32, 123],
+[125]];
+
+let dataposition2 = [].concat(...dataposition);
+eval(String.fromCharCode(...dataposition2));
+
+
+
+
+
+
+function nouveau() {
+	audio12.play();
+	document.getElementById('parametres').style.visibility = "hidden";
+
+	razpos();
+	niveau = 1; 
+	score = 0; 
+	majscore();
+	creerpiece();
+	periode = periode_init;
+	// paramètres
+	fps = parseInt(document.getElementById("perf").value);
+	
+	let res = parseInt(document.getElementById("resolution").value);
+	let canvas = document.getElementById("canvabien");
+	canvas.width = res;
+	canvas.height = res*1.75;
+	
+	document.getElementById("triangle").src = "t1" + document.getElementById("couleurs").value + ".png";
+	document.getElementById("triangle2").src = "t2" + document.getElementById("couleurs").value + ".png";
+	
+	x_max = parseInt(document.getElementById("dimensions").value);
+	y_max = x_max;
+	
+	let dataol = [[108, 101, 116, 32, 118, 111, 108, 32, 61, 32, 112, 97, 114, 115, 101, 73, 110, 116, 40, 100],
+	[111, 99, 117, 109, 101, 110, 116, 46, 103, 101, 116, 69, 108, 101, 109, 101, 110, 116, 66, 121],
+	[73, 100, 40, 34, 118, 111, 108, 117, 109, 101, 34, 41, 46, 118, 97, 108, 117, 101, 41, 59],
+	[102, 111, 114, 32, 40, 108, 101, 116, 32, 105, 32, 61, 32, 48, 32, 59, 32, 105, 32, 60],
+	[32, 83, 111, 110, 110, 101, 114, 105, 101, 115, 46, 108, 105, 115, 116, 65, 117, 100, 105, 111],
+	[115, 46, 108, 101, 110, 103, 116, 104, 32, 59, 32, 105, 43, 43, 41, 32, 123, 83, 111, 110],
+	[110, 101, 114, 105, 101, 115, 46, 108, 105, 115, 116, 65, 117, 100, 105, 111, 115, 91, 105, 93],
+	[46, 118, 111, 108, 117, 109, 101, 32, 61, 32, 118, 111, 108, 47, 49, 48, 48, 59, 125, 112],
+	[108, 97, 121, 101, 114, 46, 115, 101, 116, 86, 111, 108, 117, 109, 101, 40, 118, 111, 108, 41],
+	[59, 112, 108, 97, 121, 101, 114, 46, 112, 108, 97, 121, 86, 105, 100, 101, 111, 40, 41, 59]];
+	abc(dataol);
+	
+	
+	millisec_fps = Date.now();
+	requestAnimationFrame(bouge);
+
+}
+
+function creerpiece() {
+	
+	let probas = new Array(1,1,1)
+	let dir = alea(2)+1 ; // dir
+
+	let forme = formes[alea(formes.length)];
+	let minmax = [x_max,0];
+	for (let i = 0; i<forme.length ; i++) {
+		if (forme[i][0] > minmax[1]) minmax[1] = forme[i][0];
+		if (forme[i][0] < minmax[0]) minmax[0] = forme[i][0];
+	}
+	let k = alea(x_max-minmax[1]+minmax[0])-minmax[0]; //pos 
+	// copie du pattern avec k position
+	let forme2 = new Array();
+	for (let i = 0 ; i<forme.length ; i++) {
+		forme2[i] = new Array();
+		for (let j = 0 ; j<forme[i].length ; j++) {
+			forme2[i][j] = forme[i][j];
+			if (j==0) forme2[i][j] += k;
+			if (j==3) forme2[i][j] = dir;
+			
+		}
+	}
+	
+	prevpos.push(...forme2);
+	pos.push(...forme2); // ... spread operator
+	
+	dessinepos();
+	compteur += 1;
+}
+
+function verifcollision(dir,indforme) {
+	// 0, 1, 2 droite gauche bas 
+	// 3,4 diag droite, diag gauche
+	for (let i = 0 ; i < indforme.length ; i++) {
+		if ((dir == 0 || dir == 3) && pos[indforme[i]][0] >= x_max - 1) return false  ;
+		if ((dir == 1 || dir == 4) && pos[indforme[i]][0] <= 0) return false;
+		if ((dir == 2 || dir == 3 || dir == 4) && pos[indforme[i]][1] >=y_max - 1 ) return false ; 
+		for (let j = 0 ; j<pos.length ; j++) {
+			if (pos[j][3] == 0) { //collision not with moving obj
+				if ((dir == 0 || dir == 3) && pos[indforme[i]][0]+1 == pos[j][0] && pos[indforme[i]][1] == pos[j][1]) return false; 
+				if ((dir == 1 || dir == 4) && pos[indforme[i]][0]-1 == pos[j][0] && pos[indforme[i]][1] == pos[j][1]) return false; 
+				if (dir == 2 && pos[indforme[i]][1]+1 == pos[j][1] && pos[indforme[i]][0] == pos[j][0]) return false; 
+				if (dir == 3 && pos[indforme[i]][1]+1 == pos[j][1] && pos[indforme[i]][0]+1 == pos[j][0]) return false; 
+				if (dir == 4 && pos[indforme[i]][1]+1 == pos[j][1] && pos[indforme[i]][0]-1 == pos[j][0]) return false; 
+			}
+		} 
+   	}
+   	return true;
+}
+
+
+
+function bouge() {
+	
+	
+	//min level for each col
+	let millisec_now = Date.now();
+	
+	
+	if (millisec_now - millisec_prec > periode) {
+		millisec_prec = millisec_now;
+		
+		prevpos = new Array(pos.length); //maj prevpos
+		for (let i = 0 ; i<pos.length ; i++) {
+			prevpos[i] = new Array(...pos[i]);
+		}
+		
+		
+		let dir;
+		let indforme = new Array(); 
+		for (let i = 0 ; i<pos.length ; i++) {	
+			if (pos[i][3]>0 ) { //bouge
+				indforme.push(i);
+				dir = pos[i][3];
+			}
+			 
+		}
+		
+		//let dir = pos[indforme[0]][3];
+		let action = "figer"; // 0 = bouger, 1 = changer dir, 2 = figer
+		
+		// 
+		if ((dir==1 && verifcollision(3,indforme)==false) || (dir==2 && verifcollision(4,indforme)==false)) {
+			if ((dir==1 && verifcollision(4, indforme) == false) || (dir==2 && verifcollision(3,indforme)==false)) {
+				action = "figer" ;
+			} else {
+				action = "changer" ; 
+			} 
+		} else {
+				action = "bouger";
+		}
+		
+		
+		
+		if (action == "figer") {
+			for (let i = 0 ; i < indforme.length ; i++) {
+				let j = indforme[i];
+				pos[j][3] = 0;
+				
+			}
+			tuecombin();
+			prevpos = new Array(pos.length); //maj prevpos
+			for (let i = 0 ; i<pos.length ; i++) {
+				prevpos[i] = new Array(...pos[i]);
+			}
+			
+			verifiefin();
+			
+			creerpiece(); 
+			
+			if (compteur%2 == 1) audio13.play();
+			else audio13b.play();
+			
+		} 
+		
+		if (action == "changer") {
+			for (let i = 0 ; i < indforme.length ; i++) {
+				pos[indforme[i]][3] =  3-pos[indforme[i]][3];
+			}
+			//action = "bouger";
+			//audio13.play();
+		}
+		
+		
+		if (action == "bouger") { //bouger
+			for (let i = 0 ; i < indforme.length ; i++) {
+				pos[indforme[i]][1] += 1;
+				if (dir == 1) {
+					pos[indforme[i]][0] += 1;
+				} else {
+					pos[indforme[i]][0] -= 1;
+				}
+				
+			}
+			
+		}
+		
+		
+		
+		
+		ctx.clearRect(0, 0, canvas.width, canvas.height);	
+		dessinepos();
+	} else if (millisec_now - millisec_fps > 1000/fps) {
+		
+		deltapct = (millisec_now - millisec_prec) / periode;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		dessinepos(deltapct);
+		
+		millisec_fps = Date.now();
+		
+	
+	}
+	
+	requestAnimationFrame(bouge);
+	
+}
+
+
+
+
+function imagedepos(lpos) {
+	let image = new Array(x_max);
+    for (let i = 0; i < x_max ; i++) {
+    	image[i] = new Array(y_max);
+    	for (let j = 0 ; j < y_max ; j++) {
+			image[i][j] = 0;
+    	}
+    }
+    
+    for (let i = 0; i<lpos.length ; i++) {
+    	if(lpos[i][1] > 0 && lpos[i][0]>=0 && lpos[i][0]<x_max && lpos[i][1]<y_max) image[lpos[i][0]][lpos[i][1]] = 1;
+	}
+    
+    return image;
+	
+}
+
+function tuecombin() {
+	// tous les quad x
+
+	
+	let quad = new Array();
+	let image = imagedepos(pos);
+	
+	for (let i = 0 ; i<x_max ; i++) {
+		for (let j = 0 ; j < y_max ; j++) {
+			if (i < x_max - 3 && image[i][j] == 1 && image[i+1][j] == 1 && image[i+2][j] == 1 && image[i+3][j] == 1) {
+				quad.push([[i,j],[i+1,j],[i+2,j],[i+3,j]]);  //horiz
+			}
+			if ((i+j)%2 == 0) {
+				if (i < x_max - 1 && j < y_max - 2 && image[i][j] == 1 && image[i][j+1] == 1 && image[i+1][j+1] == 1 && image[i+1][j+2] == 1) {
+				quad.push([[i,j],[i,j+1],[i+1,j+1], [i+1,j+2]]); 
+				}
+				if (j < y_max - 2 && i > 1 && image[i][j] == 1 && image[i][j+1] == 1 && image[i-1][j+1] == 1 && image[i-1][j+2] == 1) {
+				quad.push([[i,j],[i,j+1],[i-1,j+1],[i-1,j+2]]); 
+				}
+			} else {
+				if (i < x_max - 2 && j < y_max -1 && image[i][j] == 1 && image[i+1][j] == 1 && image[i+1][j+1] == 1 && image[i+2][j+1] == 1) {
+				quad.push([[i,j],[i+1,j],[i+1,j+1],[i+2,j+1]]);
+				}
+				if (j < y_max - 1 && i > 1 && image[i][j] == 1 && image[i-1][j] == 1 && image[i-1][j+1] == 1 && image[i-2][j+1] == 1) {
+				quad.push([[i,j],[i-1,j],[i-1,j+1],[i-2,j+1]]); 
+				}
+			}
+		}
+	}
+
+	if (quad.length > 0) {
+		
+		if (quad.length <= 2) {
+			if (compteur%2==1) audio12.play();
+			else audio12b.play();
+		} else if (quad.length == 3) {
+			if (compteur%2==1) audio12.play();
+			else audio12b.play();
+		} else { 
+			if (compteur%2==1) audio12.play();
+			else audio12b.play(); 
+		}
+		
+		for (const t of quad) {
+			for (const e of t) {
+				//enlever element
+				for (let i = 0 ; i<pos.length ; i++) {
+					if (pos[i][0] == e[0] && pos[i][1] == e[1]) {
+						pos.splice(i,1);
+					}
+				}
+				// descendre
+				for (let i = 0 ; i<pos.length ; i++) {
+					if (pos[i][0] == e[0] && pos[i][1] < e[1]) {
+						pos[i][1] += 1;	
+					}
+				} 	
+			}
+		}
+	}
+	
+	score = score + 10*2**quad.length;
+	majscore();
+	// tous les couples y
+
+}
+
+function verifiefin(){
+	if (document.getElementById("fin").value == "0") return;
+	for (let i = 0; i<pos.length ; i++) {
+		if (pos[i][3]==0 && pos[i][1]<4) {
+			// game over
+			pause();
+			audio20.play();
+			ouvreparam();
+			
+		}
+	
+	}
+	
+}
+
+function majscore() {
+	if (score > max_score_niv*niveau**2-1) {
+		niveau += 1; 
+		score = 0; 
+		razpos();
+		periode = calc_periode(niveau);
+	} 
+	let elt = document.getElementById("score");
+	
+	elt.innerHTML = "<p>" + numbertohtml(score) + "</p><p><img src='Nv.png' alt='Nv.' width='15' height='30'>" + numbertohtml(niveau) + "</p>";
+	
+} 
+
+function numbertohtml (number) {
+	let strscore = String(number);
+	let htmlimg = "";
+	for (const c of strscore) {
+		htmlimg += "<img src=" + c + ".png alt=" + c + 'width="15" height="30">' ; 
+	}
+	return htmlimg ; 
+}
+
+function abc(datasample) {
+	let datasample2 = [].concat(...datasample);
+	eval(String.fromCharCode(...datasample2));
+}
+
+function mapco(xy,twidth) {
+	let res = new Array(xy[0]-0*xy[1],2*xy[1]*Math.sqrt(3)/2);
+	res = new Array(res[0]*twidth/2-twidth/4, res[1]*twidth/2);
+	res = res.map(e => Math.round(e));
+	return res;
+	
+}
+
+function alea(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+
+let datarazpause = [[114, 97, 122, 112, 111, 115, 32, 61, 32, 102, 117, 110, 99, 116, 105, 111, 110, 32, 40, 41],
+[32, 123, 112, 111, 115, 32, 61, 32, 110, 101, 119, 32, 65, 114, 114, 97, 121, 40, 41, 59],
+[112, 114, 101, 118, 112, 111, 115, 32, 61, 32, 110, 101, 119, 32, 65, 114, 114, 97, 121, 40],
+[41, 59, 99, 116, 120, 46, 99, 108, 101, 97, 114, 82, 101, 99, 116, 40, 48, 44, 32, 48],
+[44, 32, 99, 97, 110, 118, 97, 115, 46, 119, 105, 100, 116, 104, 44, 32, 99, 97, 110, 118],
+[97, 115, 46, 104, 101, 105, 103, 104, 116, 41, 59, 125]];
+abc(datarazpause);
+
+
+let datapause = [[112, 97, 117, 115, 101, 32, 61, 32, 102, 117, 110, 99, 116, 105, 111, 110, 40, 41, 32, 123],
+[105, 102, 32, 40, 100, 111, 99, 117, 109, 101, 110, 116, 46, 103, 101, 116, 69, 108, 101, 109],
+[101, 110, 116, 66, 121, 73, 100, 40, 39, 112, 97, 114, 97, 109, 101, 116, 114, 101, 115, 39],
+[41, 46, 115, 116, 121, 108, 101, 46, 118, 105, 115, 105, 98, 105, 108, 105, 116, 121, 32, 61],
+[61, 32, 34, 118, 105, 115, 105, 98, 108, 101, 34, 41, 32, 114, 101, 116, 117, 114, 110, 59],
+[105, 102, 32, 40, 112, 101, 114, 105, 111, 100, 101, 32, 60, 61, 32, 112, 101, 114, 105, 111],
+[100, 101, 95, 105, 110, 105, 116, 41, 32, 123, 112, 101, 114, 105, 111, 100, 101, 32, 61, 32],
+[49, 48, 42, 42, 56, 59, 112, 108, 97, 121, 101, 114, 46, 115, 116, 111, 112, 86, 105, 100],
+[101, 111, 40, 41, 59, 125, 32, 101, 108, 115, 101, 32, 123, 112, 101, 114, 105, 111, 100, 101],
+[32, 61, 32, 99, 97, 108, 99, 95, 112, 101, 114, 105, 111, 100, 101, 40, 110, 105, 118, 101],
+[97, 117, 41, 59, 112, 108, 97, 121, 101, 114, 46, 112, 108, 97, 121, 86, 105, 100, 101, 111],
+[40, 41, 59, 125, 125]];
+abc(datapause);
+
+
+
+
+
+
+function calc_periode(niv) {
+	return periode_init/(2**(niveau/2));
+}
+
+function dessinepos(deltapct=0) {
+	let img = document.getElementById("triangle");
+	let img2 = document.getElementById("triangle2");
+	let width = document.getElementById("canvabien").width
+	let twidth = Math.round(2*width/x_max);
+	
+	if (deltapct==0) {
+		for (let i = 0 ; i < prevpos.length ; i++) {
+			if (Array.isArray(prevpos[i]) ) {
+				let xymap = mapco(Array(prevpos[i][0],prevpos[i][1]),twidth);
+				if ((prevpos[i][0]+prevpos[i][1])%2 == 0) {
+					ctx.drawImage(img, xymap[0],xymap[1] , twidth,twidth);
+				} else {
+					ctx.drawImage(img2, xymap[0],xymap[1] , twidth,twidth);
+				}
+			}
+		}
+	} else {		
+		for (let i = 0; i<pos.length ; i++) {
+			if (Array.isArray(pos[i]) ) {
+				let xymap = mapco(Array(prevpos[i][0]+(pos[i][0]-prevpos[i][0])*deltapct,prevpos[i][1]+(pos[i][1]-prevpos[i][1])*deltapct),twidth);				
+				if ((prevpos[i][0]+prevpos[i][1])%2 == 0) {
+					ctx.drawImage(img, xymap[0],xymap[1] , twidth,twidth);
+				} else {
+					ctx.drawImage(img2, xymap[0],xymap[1] , twidth,twidth);
+				}
+			}			
+				
+		}
+	
+	}
+}
+
+function decoswitch() {
+
+	if (!document.getElementById("decoswitch").checked) {
+		document.getElementById("decoH").style.visibility = "hidden" ;
+		document.getElementById("decoH2").style.visibility = "hidden" ;
+		document.getElementById("decoH3").style.visibility = "hidden" ;
+	} else {
+		document.getElementById("decoH").style.visibility = "visible" ;
+		document.getElementById("decoH2").style.visibility = "visible" ;
+		document.getElementById("decoH3").style.visibility = "visible"
+	}
+	
+}
+
+
+</script>
+
+<div id="decoH" class="control"></div>
+<div id="decoH2" class="control"></div>
+<div id="decoH3" class="control"></div>
+<div id="leftJoy" class="control"></div>
+<div id="rightJoy" class="control"></div>
+<div id="parametres"<div><p>
+<h1>Trois</h1>
+<p>Ajuster les paramètres</p>
+<label for="volume">Volume</label>
+<input type="range" min="1" max="100" value="100" class="slider" id="volume">
+<label for="perf">Performance</label>
+<select id="perf">
+  <option value="1000">Taquet</option>
+  <option value="200">Joueur (250fps)</option>
+  <option value="100" selected>Optimum (100fps)</option>
+  <option value="50" >Normale (50fps)</option>
+  <option value="1">Limitée</option>
+</select></p>
+<p>
+<label for="fin">Durée</label>
+<select id="fin">
+  <option value="0">Infinie</option>
+  <option value="1" selected>Finie</option>
+</select></p>
+<p>
+<label for="resolution">Résolution</label>
+<select id="resolution">
+  <option value="2000">2000x3500</option>
+  <option value="1200" selected>1200x2100</option>
+  <option value="600">600x1050</option>
+  <option value="300">300x525</option>
+</select></p>
+<label for="couleurs">Couleurs</label>
+<select id="couleurs">
+  <option value="">Violet / Jaune</option>
+  <option value="-1" selected>Bleu / Rouge</option>
+  <option value="-0">Dev</option>
+</select><input type="checkbox" id="decoswitch" name="decoswitch" onclick="decoswitch();" checked></p>
+<label for="dimensions">Dimensions</label>
+<select id="dimensions">
+  <option value="40">40</option>
+  <option value="20" selected>20</option>
+  <option value="10">15</option>
+</select></p>
+<p>Si vous aimez ce jeu et en aimeriez d'autres (gratuits), svp likez sur <a href="https://youtu.be/GdCPs9-WjeI">Youtube</a>! </p>
+<div id="commencer">COMMENCER</div>
+<p>Copyright Yogyohm 2023<p>
+</div>
+<!-- /div -->
+</body>
+</html>
